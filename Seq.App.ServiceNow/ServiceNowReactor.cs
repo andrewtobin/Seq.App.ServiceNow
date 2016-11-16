@@ -8,9 +8,10 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Seq.Apps;
 using Seq.Apps.LogEvents;
 
-namespace Seq.Apps.ServiceNow
+namespace Seq.App.ServiceNow
 {
     [SeqApp("ServiceNow", Description = "Creates a ServiceNow Incident for a Seq event.")]
     public class ServiceNowReactor: Reactor, ISubscribeTo<LogEventData>

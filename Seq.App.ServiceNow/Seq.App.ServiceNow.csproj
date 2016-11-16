@@ -7,8 +7,8 @@
     <ProjectGuid>{60F74B0E-0781-4CA5-8D95-D6524C21BB09}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Seq.Apps.ServiceNow</RootNamespace>
-    <AssemblyName>Seq.Apps.ServiceNow</AssemblyName>
+    <RootNamespace>Seq.App.ServiceNow</RootNamespace>
+    <AssemblyName>Seq.App.ServiceNow</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
