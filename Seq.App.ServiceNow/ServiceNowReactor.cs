@@ -14,7 +14,7 @@ using Seq.Apps.LogEvents;
 namespace Seq.App.ServiceNow
 {
     [SeqApp("ServiceNow", Description = "Creates a ServiceNow Incident for a Seq event.")]
-    public class ServiceNowReactor: Reactor, ISubscribeTo<LogEventData>
+    public class ServiceNowReactor : Reactor, ISubscribeTo<LogEventData>
     {
         readonly ConcurrentDictionary<uint, DateTime> _lastSeen = new ConcurrentDictionary<uint, DateTime>();
 
@@ -58,8 +58,9 @@ namespace Seq.App.ServiceNow
 
             var message = new StringBuilder();
 
-            foreach (var property in evt.Data.Properties)
-                message.AppendLine($"{property.Key}: {property.Value}");
+            if (evt.Data.Properties != null && evt.Data.Properties.Count > 0)
+                foreach (var property in evt.Data.Properties)
+                    message.AppendLine($"{property.Key}: {property.Value}");
 
             message.AppendLine();
             message.AppendLine("Exception:");
@@ -67,17 +68,17 @@ namespace Seq.App.ServiceNow
 
             var record = new
             {
-                @assigned_to = AssignTo,
+                @assigned_to = AssignTo ?? "",
                 @short_description = "[" + evt.Data.Level + "] " + evt.Data.RenderedMessage,
                 @description = message,
             };
 
 
-            var credentials = new CredentialCache { { new Uri($"https://{Instance}.service-now.com/"), "Basic", new NetworkCredential(Username, Password) }};
+            var credentials = new CredentialCache { { new Uri($"https://{Instance}.service-now.com/"), "Basic", new NetworkCredential(Username, Password) } };
 
             using (var client = new HttpClient(new HttpClientHandler { Credentials = credentials }))
             {
-                var response = client.PostAsync($"https://{Instance}.service-now.com/api/now/v1/table/incident", 
+                var response = client.PostAsync($"https://{Instance}.service-now.com/api/now/v1/table/incident",
                     new StringContent(JsonConvert.SerializeObject(record), Encoding.UTF8, "application/json")).Result;
 
                 response.EnsureSuccessStatusCode();
