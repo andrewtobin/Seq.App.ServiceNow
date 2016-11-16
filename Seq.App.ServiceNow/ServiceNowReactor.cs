@@ -70,7 +70,7 @@ namespace Seq.App.ServiceNow
             {
                 @assigned_to = AssignTo ?? "",
                 @short_description = "[" + evt.Data.Level + "] " + evt.Data.RenderedMessage,
-                @description = message,
+                @comments = message,
             };
 
 
