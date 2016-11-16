@@ -1,0 +1,15 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Seq.App.ServiceNow</id>
+    <version>0.0.1</version>
+    <authors>tobin</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An app for Seq (http://getseq.net) that forwards messages to ServiceNow.</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/andrewtobin/Seq.App.ServiceNow</projectUrl>
+    <tags>seq-app seq serilog events ServiceNow</tags>
+  </metadata>
+  <files>
+    <file src="bin\Debug\*.dll" target="lib\net45" exclude="bin\Debug\Seq.Apps.*;bin\Debug\Serilog.*" />
+  </files>
+</package>
