@@ -77,7 +77,7 @@ namespace Seq.App.ServiceNow
 
             using (var client = new HttpClient(new HttpClientHandler { Credentials = credentials }))
             {
-                var response = client.PostAsync($"https://{Instance}.service-now.com/api/now/v1/table/incident/", 
+                var response = client.PostAsync($"https://{Instance}.service-now.com/api/now/v1/table/incident", 
                     new StringContent(JsonConvert.SerializeObject(record), Encoding.UTF8, "application/json")).Result;
 
                 response.EnsureSuccessStatusCode();
